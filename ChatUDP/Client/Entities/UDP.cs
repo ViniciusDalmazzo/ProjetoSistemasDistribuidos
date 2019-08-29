@@ -7,29 +7,29 @@ namespace Client
 {
     public class UDP
     {
-        private UdpClient client_send, client_receive;
+        private UdpClient ClientSend, ClientRecieve;
 
         public UDP()
         {
-            client_receive = new UdpClient(6969);
-            client_send = new UdpClient(6968);
+            ClientRecieve = new UdpClient(6969);
+            ClientSend = new UdpClient(6968);
         }
 
         public void Send(string text, string ip, int port)
         {
-            client_send.Connect(new IPEndPoint(IPAddress.Parse(ip), port));
+            ClientSend.Connect(new IPEndPoint(IPAddress.Parse(ip), port));
             byte[] data = Encoding.ASCII.GetBytes(text);
-            client_send.Send(data, data.Length);
+            ClientSend.Send(data, data.Length);
         }
 
         public string Receive()
         {
-            var recv_end = new IPEndPoint(IPAddress.Any, 6969);
-            var rec_buff = client_receive.Receive(ref recv_end);
-            var msg = recv_end.ToString();
+            var RecieveEndPoint = new IPEndPoint(IPAddress.Any, 6969);
+            var RecieveBuffer = ClientRecieve.Receive(ref RecieveEndPoint);
+            var ip = RecieveEndPoint.ToString();
 
-            if (!string.IsNullOrEmpty(msg))
-                return msg + ": " + Encoding.ASCII.GetString(rec_buff) + Environment.NewLine;
+            if (!string.IsNullOrEmpty(ip))
+                return ip + ": " + Encoding.ASCII.GetString(RecieveBuffer) + Environment.NewLine;
 
             return string.Empty;
         }

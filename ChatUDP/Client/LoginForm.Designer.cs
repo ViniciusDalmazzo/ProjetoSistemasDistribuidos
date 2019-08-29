@@ -67,7 +67,7 @@
             this.editIP.Name = "editIP";
             this.editIP.Size = new System.Drawing.Size(258, 20);
             this.editIP.TabIndex = 3;
-            this.editIP.Text = "172.18.0.32";
+            this.editIP.Text = "127.0.0.1";
             // 
             // textBox1
             // 

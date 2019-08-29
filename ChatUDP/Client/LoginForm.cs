@@ -14,12 +14,11 @@ namespace Client
             Udp = new UDP();
             InitThread();
 
-            this.listView1.Items.Clear();
-            this.listView1.View = View.Details;
-            this.listView1.Columns.Add("Name");
-            this.listView1.Columns[0].Width = this.listView1.Width -
-            4;
-            this.listView1.HeaderStyle = ColumnHeaderStyle.None;
+            listView1.Items.Clear();
+            listView1.View = View.Details;
+            listView1.Columns.Add("Name");
+            listView1.Columns[0].Width = this.listView1.Width - 4;
+            listView1.HeaderStyle = ColumnHeaderStyle.None;
         }
 
         private void BotaoEnviarMensagem_Click(object sender, EventArgs e)
@@ -50,9 +49,9 @@ namespace Client
 
         public void InitThread()
         {
-            var listen_thread = new Thread(new ThreadStart(Receive));
-            listen_thread.IsBackground = true;
-            listen_thread.Start();
+            var RecieveThread = new Thread(new ThreadStart(Receive));
+            RecieveThread.IsBackground = true;
+            RecieveThread.Start();
         }
 
         public void Receive()
@@ -62,7 +61,7 @@ namespace Client
                 var msg = Udp.Receive();
 
                 if (!string.IsNullOrEmpty(msg))
-                    this.Invoke(new EscreveMensagem(EscreverMensagemNaTela), msg);
+                    Invoke(new EscreveMensagem(EscreverMensagemNaTela), msg);
             }
         }
     }
