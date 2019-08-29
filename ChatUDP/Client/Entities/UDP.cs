@@ -2,17 +2,17 @@
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
-using System.Threading;
 
 namespace Client
 {
     public class UDP
     {
-        public UdpClient client_send = new UdpClient(6968), client_receive;
+        private UdpClient client_send, client_receive;
 
         public UDP()
         {
             client_receive = new UdpClient(6969);
+            client_send = new UdpClient(6968);
         }
 
         public void Send(string text, string ip, int port)

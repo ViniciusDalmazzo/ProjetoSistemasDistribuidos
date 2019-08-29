@@ -13,6 +13,13 @@ namespace Client
             InitializeComponent();
             Udp = new UDP();
             InitThread();
+
+            this.listView1.Items.Clear();
+            this.listView1.View = View.Details;
+            this.listView1.Columns.Add("Name");
+            this.listView1.Columns[0].Width = this.listView1.Width -
+            4;
+            this.listView1.HeaderStyle = ColumnHeaderStyle.None;
         }
 
         private void BotaoEnviarMensagem_Click(object sender, EventArgs e)
@@ -26,13 +33,17 @@ namespace Client
 
         public void EnviarMensagem(string msg, string ip, int porta)
         {
-            Udp.Send(msg, ip, porta);
+            if (!string.IsNullOrEmpty(msg))
+            {
+                Udp.Send(msg, ip, porta);
+                EscreverMensagemNaTela($"Eu: {msg}");
+            }
         }
 
         delegate void teste(string texto);
         public void EscreverMensagemNaTela(string msg)
         {
-            textBox2.Text += msg;
+            listView1.Items.Add(new ListViewItem(msg));
         }
 
         public void InitThread()
@@ -48,7 +59,7 @@ namespace Client
             {
                 var msg = Udp.Receive();
 
-                if(!string.IsNullOrEmpty(msg))
+                if (!string.IsNullOrEmpty(msg))
                     this.Invoke(new teste(EscreverMensagemNaTela), msg);
             }
         }
