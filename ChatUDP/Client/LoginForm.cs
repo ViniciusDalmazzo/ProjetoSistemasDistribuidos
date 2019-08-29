@@ -37,10 +37,12 @@ namespace Client
             {
                 Udp.Send(msg, ip, porta);
                 EscreverMensagemNaTela($"Eu: {msg}");
+
+                textBox1.Text = string.Empty;
             }
         }
 
-        delegate void teste(string texto);
+        delegate void EscreveMensagem(string texto);
         public void EscreverMensagemNaTela(string msg)
         {
             listView1.Items.Add(new ListViewItem(msg));
@@ -60,7 +62,7 @@ namespace Client
                 var msg = Udp.Receive();
 
                 if (!string.IsNullOrEmpty(msg))
-                    this.Invoke(new teste(EscreverMensagemNaTela), msg);
+                    this.Invoke(new EscreveMensagem(EscreverMensagemNaTela), msg);
             }
         }
     }
