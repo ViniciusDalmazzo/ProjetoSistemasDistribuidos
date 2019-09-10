@@ -27,9 +27,10 @@ namespace Client
             var RecieveEndPoint = new IPEndPoint(IPAddress.Any, 6969);
             var RecieveBuffer = ClientRecieve.Receive(ref RecieveEndPoint);
             var ip = RecieveEndPoint.ToString();
+            var mensagemRecebida = Encoding.ASCII.GetString(RecieveBuffer);
 
             if (!string.IsNullOrEmpty(ip))
-                return ip + ": " + Encoding.ASCII.GetString(RecieveBuffer) + Environment.NewLine;
+                return ip + Environment.NewLine;
 
             return string.Empty;
         }

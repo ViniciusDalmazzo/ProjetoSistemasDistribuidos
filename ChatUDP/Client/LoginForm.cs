@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading;
 using System.Windows.Forms;
 
@@ -6,52 +7,60 @@ namespace Client
 {
     public partial class LoginForm : Form
     {
-        private readonly UDP Udp;
+        private UDP Udp;
+        private List<string> listaIps = new List<string>();
+        private const string MensagemPadraoEnvio = "Heartbeat";
+        private const string MensagemPadraoReceber = "Heartbeat recebido: ";
 
         public LoginForm()
         {
             InitializeComponent();
-            Udp = new UDP();
-            InitThread();
 
             listView1.Items.Clear();
             listView1.View = View.Details;
             listView1.Columns.Add("Name");
             listView1.Columns[0].Width = this.listView1.Width - 4;
             listView1.HeaderStyle = ColumnHeaderStyle.None;
+
+            listView2.Items.Clear();
+            listView2.View = View.Details;
+            listView2.Columns.Add("Name");
+            listView2.Columns[0].Width = this.listView2.Width - 4;
+            listView2.HeaderStyle = ColumnHeaderStyle.None;
+                      
         }
 
-        private void BotaoEnviarMensagem_Click(object sender, EventArgs e)
+        public void InicializarInformacoesHeartbeat()
         {
-            var ip = editIP.Text;
-            var porta = Convert.ToInt32(textBox3.Text);
-            var msg = textBox1.Text;
-
-            EnviarMensagem(msg, ip, porta);
+            listaIps.Add("192.168.1.1");
+            listaIps.Add("192.168.1.2");
+            listaIps.Add("192.168.1.3");
+            listaIps.Add("192.168.1.4");
+            listaIps.Add("192.168.1.5");
+            listaIps.Add("192.168.1.6");
         }
 
-        public void EnviarMensagem(string msg, string ip, int porta)
+        delegate void EscreveMensagemRecebe(string texto);
+        public void EscreverMensagemRecebe(string msg)
         {
-            if (!string.IsNullOrEmpty(msg))
-            {
-                Udp.Send(msg, ip, porta);
-                EscreverMensagemNaTela($"Eu: {msg}");
-
-                textBox1.Text = string.Empty;
-            }
+            listView2.Items.Add(new ListViewItem(msg));
         }
 
-        delegate void EscreveMensagem(string texto);
-        public void EscreverMensagemNaTela(string msg)
+        delegate void EscreveMensagemEnvio(string texto);
+        public void EscreverMensagemEnvio(string msg)
         {
             listView1.Items.Add(new ListViewItem(msg));
         }
 
         public void InitThread()
         {
-            var RecieveThread = new Thread(new ThreadStart(Receive));
+            var RecieveThread = new Thread(new ThreadStart(Send));
             RecieveThread.IsBackground = true;
             RecieveThread.Start();
+
+            var SendThread = new Thread(new ThreadStart(Receive));
+            SendThread.IsBackground = true;
+            SendThread.Start();
         }
 
         public void Receive()
@@ -61,8 +70,31 @@ namespace Client
                 var msg = Udp.Receive();
 
                 if (!string.IsNullOrEmpty(msg))
-                    Invoke(new EscreveMensagem(EscreverMensagemNaTela), msg);
+                    Invoke(new EscreveMensagemRecebe(EscreverMensagemRecebe), $"{MensagemPadraoReceber} {msg}");
+
             }
+        }
+
+        public void Send()
+        {
+            while (true)
+            {
+                foreach (var ip in listaIps)
+                {
+                    Udp.Send(MensagemPadraoEnvio, ip, 6969);
+
+                    Invoke(new EscreveMensagemEnvio(EscreverMensagemEnvio), $"Heartbeat enviado para: {ip}");
+                }
+
+                Thread.Sleep(1000);
+            }
+        }
+
+        public void button1_Click(object sender, EventArgs e)
+        {
+            Udp = new UDP();
+            InicializarInformacoesHeartbeat();
+            InitThread();
         }
     }
 }
