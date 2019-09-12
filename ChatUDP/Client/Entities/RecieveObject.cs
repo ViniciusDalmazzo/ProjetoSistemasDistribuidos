@@ -20,15 +20,8 @@ namespace Client.Entities
 
         public bool ValidaSePrecisaRetornarUmaMensagem()
         {
-            var palavras = Mensagem.Split(' ');
-
-            if(palavras.Count() > 2)
-            {
-                var reply = palavras[1];
-
-                if (reply == "reply")
-                    return false;
-            }
+            if (Mensagem.Contains("reply"))
+                return false;
 
             return true;
         }

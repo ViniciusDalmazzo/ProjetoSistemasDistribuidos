@@ -36,8 +36,6 @@ namespace Client
             listView3.Columns.Add("Name");
             listView3.Columns[0].Width = this.listView2.Width - 4;
             listView3.HeaderStyle = ColumnHeaderStyle.None;
-
-            InicializarInformacoesHeartbeat();
         }
 
         public void InicializarInformacoesHeartbeat()
