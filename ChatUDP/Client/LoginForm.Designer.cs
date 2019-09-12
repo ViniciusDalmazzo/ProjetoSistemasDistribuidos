@@ -49,6 +49,7 @@
             // listView1
             // 
             this.listView1.Alignment = System.Windows.Forms.ListViewAlignment.Left;
+            this.listView1.HideSelection = false;
             this.listView1.Location = new System.Drawing.Point(6, 19);
             this.listView1.Name = "listView1";
             this.listView1.Size = new System.Drawing.Size(456, 197);
@@ -78,6 +79,7 @@
             // listView2
             // 
             this.listView2.Alignment = System.Windows.Forms.ListViewAlignment.Left;
+            this.listView2.HideSelection = false;
             this.listView2.Location = new System.Drawing.Point(6, 19);
             this.listView2.Name = "listView2";
             this.listView2.Size = new System.Drawing.Size(456, 197);
@@ -109,7 +111,8 @@
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(185, 20);
             this.textBox2.TabIndex = 17;
-            this.textBox2.Text = "6969";
+            this.textBox2.Text = "60000";
+            this.textBox2.TextChanged += new System.EventHandler(this.TextBox2_TextChanged);
             // 
             // label3
             // 
@@ -148,6 +151,7 @@
             // listView3
             // 
             this.listView3.Alignment = System.Windows.Forms.ListViewAlignment.Left;
+            this.listView3.HideSelection = false;
             this.listView3.Location = new System.Drawing.Point(6, 77);
             this.listView3.Name = "listView3";
             this.listView3.Size = new System.Drawing.Size(191, 238);

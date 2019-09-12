@@ -7,15 +7,18 @@ namespace Client.Entities
         public string Mensagem { get; set; }
         public string Ip { get; set; }
 
+        public int Porta { get; set; }
+
         public RecieveObject()
         {
 
         }
 
-        public RecieveObject(string msg, string ip)
+        public RecieveObject(string msg, string ip, int porta)
         {
             Mensagem = msg;
             Ip = ip;
+            Porta = porta;
         }
 
         public bool ValidaSePrecisaRetornarUmaMensagem()

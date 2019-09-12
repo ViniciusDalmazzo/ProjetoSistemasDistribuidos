@@ -12,8 +12,8 @@ namespace Client
 
         public UDP()
         {
-            ClientRecieve = new UdpClient(6969);
-            ClientSend = new UdpClient(6968);
+            ClientRecieve = new UdpClient(60000);
+            ClientSend = new UdpClient();
         }
 
         public void Send(string text, string ip, int port)
@@ -26,13 +26,14 @@ namespace Client
         public RecieveObject Receive()
         {
             RecieveObject recieveObject = new RecieveObject();
-            var RecieveEndPoint = new IPEndPoint(IPAddress.Any, 6969);
+            var RecieveEndPoint = new IPEndPoint(IPAddress.Any, 60000);
             var RecieveBuffer = ClientRecieve.Receive(ref RecieveEndPoint);
             var ip = RecieveEndPoint.Address.ToString();
+            var porta = RecieveEndPoint.Port;
             var mensagemRecebida = Encoding.ASCII.GetString(RecieveBuffer);
 
             if (!string.IsNullOrEmpty(ip))
-                return new RecieveObject(mensagemRecebida, ip);
+                return new RecieveObject(mensagemRecebida, ip, porta);
 
             return recieveObject;
         }

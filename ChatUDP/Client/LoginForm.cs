@@ -41,6 +41,14 @@ namespace Client
         public void InicializarInformacoesHeartbeat()
         {
             listView3.Items.Add("172.18.0.32");
+            listView3.Items.Add("172.18.0.29");
+            listView3.Items.Add("172.18.0.30");
+            listView3.Items.Add("172.18.0.23");
+            listView3.Items.Add("172.18.0.21");
+            listView3.Items.Add("172.18.0.19");
+            listView3.Items.Add("172.18.0.18");
+            listView3.Items.Add("172.18.0.17");
+            listView3.Items.Add("172.18.0.16");
 
             RecuperaIPSConfigurados();
             RecuperaPortaConfigurada();
@@ -78,9 +86,12 @@ namespace Client
 
                 if (!string.IsNullOrEmpty(recieveObject.Ip) && recieveObject.ValidaSePrecisaRetornarUmaMensagem())
                 {
-                    Udp.Send($"{MensagemPadraoEnvio}", recieveObject.Ip, Porta);
-                    Invoke(new EscreveMensagemRecebe(EscreverMensagemRecebe), $"{MensagemPadraoReceber} {recieveObject.Ip}");
+                    Invoke(new EscreveMensagemRecebe(EscreverMensagemRecebe), $"Hearbeat request recebido {recieveObject.Ip}");
+                    Udp.Send($"{MensagemPadraoReceber}", recieveObject.Ip, Porta);
+                    Invoke(new EscreveMensagemEnvio(EscreverMensagemEnvio), $"Hearbeat reply enviado {recieveObject.Ip}");
                 }
+                else
+                    Invoke(new EscreveMensagemRecebe(EscreverMensagemRecebe), $"Heartbeat reply recebido {recieveObject.Ip}");
             }
         }
 
@@ -91,8 +102,7 @@ namespace Client
                 foreach (var ip in listaIps)
                 {
                     Udp.Send(MensagemPadraoEnvio, ip, Porta);
-
-                    Invoke(new EscreveMensagemEnvio(EscreverMensagemEnvio), $"{MensagemPadraoEnvio} {ip}");
+                    Invoke(new EscreveMensagemEnvio(EscreverMensagemEnvio), $"Heartbeat request enviado {ip}");
                 }
 
                 Thread.Sleep(TempoAtualizacao);
@@ -104,7 +114,7 @@ namespace Client
             Udp = new UDP();
             AlteraStatusDasConfiguracoes(false);
             InicializarInformacoesHeartbeat();
-            InitThread();            
+            InitThread();
         }
 
         public void RecuperaIPSConfigurados()
@@ -142,5 +152,9 @@ namespace Client
             groupBox3.Enabled = ativo;
         }
 
+        private void TextBox2_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
