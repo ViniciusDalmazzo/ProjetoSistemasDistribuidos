@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Client.Entities;
+using System;
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
@@ -22,17 +23,18 @@ namespace Client
             ClientSend.Send(data, data.Length);
         }
 
-        public string Receive()
+        public RecieveObject Receive()
         {
+            RecieveObject recieveObject = new RecieveObject();
             var RecieveEndPoint = new IPEndPoint(IPAddress.Any, 6969);
             var RecieveBuffer = ClientRecieve.Receive(ref RecieveEndPoint);
-            var ip = RecieveEndPoint.ToString();
+            var ip = RecieveEndPoint.Address.ToString();
             var mensagemRecebida = Encoding.ASCII.GetString(RecieveBuffer);
 
             if (!string.IsNullOrEmpty(ip))
-                return ip + Environment.NewLine;
+                return new RecieveObject(mensagemRecebida, ip);
 
-            return string.Empty;
+            return recieveObject;
         }
     }
 }

@@ -10,8 +10,8 @@ namespace Client
     {
         private UDP Udp;
         private List<string> listaIps = new List<string>();
-        private const string MensagemPadraoEnvio = "Heartbeat";
-        private const string MensagemPadraoReceber = "Heartbeat recebido: ";
+        private const string MensagemPadraoEnvio = "Heartbeat request";
+        private const string MensagemPadraoReceber = "Heartbeat reply";
         private int Porta;
         private int TempoAtualizacao;
 
@@ -42,12 +42,7 @@ namespace Client
 
         public void InicializarInformacoesHeartbeat()
         {
-            listView3.Items.Add("192.168.1.1");
-            listView3.Items.Add("192.168.1.2");
-            listView3.Items.Add("192.168.1.3");
-            listView3.Items.Add("192.168.1.4");
-            listView3.Items.Add("192.168.1.5");
-            listView3.Items.Add("192.168.1.6");
+            listView3.Items.Add("172.18.0.32");
 
             RecuperaIPSConfigurados();
             RecuperaPortaConfigurada();
@@ -81,11 +76,13 @@ namespace Client
         {
             while (true)
             {
-                var msg = Udp.Receive();
+                var recieveObject = Udp.Receive();
 
-                if (!string.IsNullOrEmpty(msg))
-                    Invoke(new EscreveMensagemRecebe(EscreverMensagemRecebe), $"{MensagemPadraoReceber} {msg}");
-
+                if (!string.IsNullOrEmpty(recieveObject.Ip) && recieveObject.ValidaSePrecisaRetornarUmaMensagem())
+                {
+                    Udp.Send($"{MensagemPadraoEnvio}", recieveObject.Ip, Porta);
+                    Invoke(new EscreveMensagemRecebe(EscreverMensagemRecebe), $"{MensagemPadraoReceber} {recieveObject.Ip}");
+                }
             }
         }
 
@@ -97,7 +94,7 @@ namespace Client
                 {
                     Udp.Send(MensagemPadraoEnvio, ip, Porta);
 
-                    Invoke(new EscreveMensagemEnvio(EscreverMensagemEnvio), $"Heartbeat enviado para: {ip}");
+                    Invoke(new EscreveMensagemEnvio(EscreverMensagemEnvio), $"{MensagemPadraoEnvio} {ip}");
                 }
 
                 Thread.Sleep(TempoAtualizacao);
@@ -146,5 +143,6 @@ namespace Client
         {
             groupBox3.Enabled = ativo;
         }
+
     }
 }
