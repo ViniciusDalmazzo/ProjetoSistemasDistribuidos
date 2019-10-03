@@ -46,28 +46,33 @@ namespace Client
         {
             dataGridView1.Rows.Add();
 
-            dataGridView1.Rows[dataGridView1.Rows.Count - 1].Cells[0].Value = "172.18.0.9";
+            dataGridView1.Rows[dataGridView1.Rows.Count - 1].Cells[0].Value = "172.18.0.7";
             dataGridView1.Rows[dataGridView1.Rows.Count - 1].Cells[1].Value = 1;
 
             dataGridView1.Rows.Add();
 
-            dataGridView1.Rows[dataGridView1.Rows.Count - 1].Cells[0].Value = "172.18.0.31";
-            dataGridView1.Rows[dataGridView1.Rows.Count - 1].Cells[1].Value = 3;
-
-            dataGridView1.Rows.Add();
-
-            dataGridView1.Rows[dataGridView1.Rows.Count - 1].Cells[0].Value = "172.18.0.32";
+            dataGridView1.Rows[dataGridView1.Rows.Count - 1].Cells[0].Value = "172.18.0.23";
             dataGridView1.Rows[dataGridView1.Rows.Count - 1].Cells[1].Value = 2;
 
             dataGridView1.Rows.Add();
 
-            dataGridView1.Rows[dataGridView1.Rows.Count - 1].Cells[0].Value = "172.18.0.23";
-            dataGridView1.Rows[dataGridView1.Rows.Count - 1].Cells[1].Value = 0;
+            dataGridView1.Rows[dataGridView1.Rows.Count - 1].Cells[0].Value = "172.18.0.30";
+            dataGridView1.Rows[dataGridView1.Rows.Count - 1].Cells[1].Value = 3;
 
             dataGridView1.Rows.Add();
 
-            dataGridView1.Rows[dataGridView1.Rows.Count - 1].Cells[0].Value = "172.18.0.24";
+            dataGridView1.Rows[dataGridView1.Rows.Count - 1].Cells[0].Value = "172.18.0.31";
             dataGridView1.Rows[dataGridView1.Rows.Count - 1].Cells[1].Value = 4;
+
+            dataGridView1.Rows.Add();
+
+            dataGridView1.Rows[dataGridView1.Rows.Count - 1].Cells[0].Value = "172.18.0.32";
+            dataGridView1.Rows[dataGridView1.Rows.Count - 1].Cells[1].Value = 5;
+
+            dataGridView1.Rows.Add();
+
+            dataGridView1.Rows[dataGridView1.Rows.Count - 1].Cells[0].Value = "172.18.0.195";
+            dataGridView1.Rows[dataGridView1.Rows.Count - 1].Cells[1].Value = 6;
 
             dataGridView1.Rows[0].DefaultCellStyle.BackColor = Color.IndianRed;
             dataGridView1.ClearSelection();
