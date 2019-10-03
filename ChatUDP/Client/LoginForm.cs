@@ -84,6 +84,11 @@ namespace Client
             //dataGridView1.Rows[dataGridView1.Rows.Count - 1].Cells[0].Value = "172.18.0.19";
             //dataGridView1.Rows[dataGridView1.Rows.Count - 1].Cells[1].Value = 7;
 
+            dataGridView1.Rows.Add();
+
+            dataGridView1.Rows[dataGridView1.Rows.Count - 1].Cells[0].Value = "172.18.0.32";
+            dataGridView1.Rows[dataGridView1.Rows.Count - 1].Cells[1].Value = 3;
+
             dataGridView1.Rows[0].DefaultCellStyle.BackColor = Color.IndianRed;
             dataGridView1.ClearSelection();
 
