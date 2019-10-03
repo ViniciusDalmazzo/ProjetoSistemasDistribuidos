@@ -44,79 +44,53 @@ namespace Client
 
         public void InicializarInformacoesHeartbeat()
         {
-            //dataGridView1.Rows.Add();
+            dataGridView1.Rows.Add();
 
-            //dataGridView1.Rows[dataGridView1.Rows.Count - 1].Cells[0].Value = "172.18.0.7";
-            //dataGridView1.Rows[dataGridView1.Rows.Count - 1].Cells[1].Value = 0;
+            dataGridView1.Rows[dataGridView1.Rows.Count - 1].Cells[0].Value = "172.18.0.7";
+            dataGridView1.Rows[dataGridView1.Rows.Count - 1].Cells[1].Value = 0;
 
             dataGridView1.Rows.Add();
 
             dataGridView1.Rows[dataGridView1.Rows.Count - 1].Cells[0].Value = "172.18.0.23";
-            dataGridView1.Rows[dataGridView1.Rows.Count - 1].Cells[1].Value = 2;
-
-            //dataGridView1.Rows.Add();
-
-            //dataGridView1.Rows[dataGridView1.Rows.Count - 1].Cells[0].Value = "172.18.0.30";
-            //dataGridView1.Rows[dataGridView1.Rows.Count - 1].Cells[1].Value = 2;
+            dataGridView1.Rows[dataGridView1.Rows.Count - 1].Cells[1].Value = 1;
 
             dataGridView1.Rows.Add();
 
             dataGridView1.Rows[dataGridView1.Rows.Count - 1].Cells[0].Value = "172.18.0.31";
-            dataGridView1.Rows[dataGridView1.Rows.Count - 1].Cells[1].Value = 1;
-
-            //dataGridView1.Rows.Add();
-
-            //dataGridView1.Rows[dataGridView1.Rows.Count - 1].Cells[0].Value = "172.18.0.32";
-            //dataGridView1.Rows[dataGridView1.Rows.Count - 1].Cells[1].Value = 4;
-
-            dataGridView1.Rows.Add();
-
-            dataGridView1.Rows[dataGridView1.Rows.Count - 1].Cells[0].Value = "172.18.0.28";
-            dataGridView1.Rows[dataGridView1.Rows.Count - 1].Cells[1].Value = 0;
-
-            //dataGridView1.Rows.Add();
-
-            //dataGridView1.Rows[dataGridView1.Rows.Count - 1].Cells[0].Value = "172.18.0.195";
-            //dataGridView1.Rows[dataGridView1.Rows.Count - 1].Cells[1].Value = 6;
-
-            //dataGridView1.Rows.Add();
-
-            //dataGridView1.Rows[dataGridView1.Rows.Count - 1].Cells[0].Value = "172.18.0.19";
-            //dataGridView1.Rows[dataGridView1.Rows.Count - 1].Cells[1].Value = 7;
+            dataGridView1.Rows[dataGridView1.Rows.Count - 1].Cells[1].Value = 2;
 
             dataGridView1.Rows.Add();
 
             dataGridView1.Rows[dataGridView1.Rows.Count - 1].Cells[0].Value = "172.18.0.32";
             dataGridView1.Rows[dataGridView1.Rows.Count - 1].Cells[1].Value = 3;
 
+            dataGridView1.Rows.Add();
+
+            dataGridView1.Rows[dataGridView1.Rows.Count - 1].Cells[0].Value = "172.18.0.28";
+            dataGridView1.Rows[dataGridView1.Rows.Count - 1].Cells[1].Value = 4;
+
+            dataGridView1.Rows.Add();
+
+            dataGridView1.Rows[dataGridView1.Rows.Count - 1].Cells[0].Value = "172.18.0.195";
+            dataGridView1.Rows[dataGridView1.Rows.Count - 1].Cells[1].Value = 5;
+
+            dataGridView1.Rows.Add();
+
+            dataGridView1.Rows[dataGridView1.Rows.Count - 1].Cells[0].Value = "172.18.0.36";
+            dataGridView1.Rows[dataGridView1.Rows.Count - 1].Cells[1].Value = 6;
+
+            dataGridView1.Rows.Add();
+
+            dataGridView1.Rows[dataGridView1.Rows.Count - 1].Cells[0].Value = "172.18.0.21";
+            dataGridView1.Rows[dataGridView1.Rows.Count - 1].Cells[1].Value = 7;
+
+            dataGridView1.Rows.Add();
+
+            dataGridView1.Rows[dataGridView1.Rows.Count - 1].Cells[0].Value = "172.18.0.3";
+            dataGridView1.Rows[dataGridView1.Rows.Count - 1].Cells[1].Value = 8;
+
             dataGridView1.Rows[0].DefaultCellStyle.BackColor = Color.IndianRed;
             dataGridView1.ClearSelection();
-
-            //listView3.Items.Add("172.18.0.32");
-            //listView3.Items.Add("172.18.0.29");
-            //listView3.Items.Add("172.18.0.30");
-            //listView3.Items.Add("172.18.0.23");
-            //listView3.Items.Add("172.18.0.21");
-            //listView3.Items.Add("172.18.0.20");
-            //listView3.Items.Add("172.18.0.19");
-            //listView3.Items.Add("172.18.0.18");
-            //listView3.Items.Add("172.18.0.17");
-            //listView3.Items.Add("172.18.0.15");
-            //listView3.Items.Add("172.18.0.14");
-            //listView3.Items.Add("172.18.0.13");
-            //listView3.Items.Add("172.18.0.12");
-            //listView3.Items.Add("172.18.0.11");
-            //listView3.Items.Add("172.18.0.10");
-            //listView3.Items.Add("172.18.0.9");
-            //listView3.Items.Add("172.18.0.8");
-            //listView3.Items.Add("172.18.0.7");
-            //listView3.Items.Add("172.18.0.6");
-            //listView3.Items.Add("172.18.0.5");
-            //listView3.Items.Add("172.18.0.4");
-            //listView3.Items.Add("172.18.0.3");
-            //listView3.Items.Add("172.18.0.2");
-            //listView3.Items.Add("172.18.0.1");
-            //listView3.Items.Add("172.18.3.71");
 
             RecuperaIPSConfigurados();
             RecuperaPortaConfigurada();
