@@ -47,32 +47,42 @@ namespace Client
             dataGridView1.Rows.Add();
 
             dataGridView1.Rows[dataGridView1.Rows.Count - 1].Cells[0].Value = "172.18.0.7";
-            dataGridView1.Rows[dataGridView1.Rows.Count - 1].Cells[1].Value = 1;
+            dataGridView1.Rows[dataGridView1.Rows.Count - 1].Cells[1].Value = 0;
 
             dataGridView1.Rows.Add();
 
             dataGridView1.Rows[dataGridView1.Rows.Count - 1].Cells[0].Value = "172.18.0.23";
-            dataGridView1.Rows[dataGridView1.Rows.Count - 1].Cells[1].Value = 2;
+            dataGridView1.Rows[dataGridView1.Rows.Count - 1].Cells[1].Value = 1;
 
             dataGridView1.Rows.Add();
 
             dataGridView1.Rows[dataGridView1.Rows.Count - 1].Cells[0].Value = "172.18.0.30";
-            dataGridView1.Rows[dataGridView1.Rows.Count - 1].Cells[1].Value = 3;
+            dataGridView1.Rows[dataGridView1.Rows.Count - 1].Cells[1].Value = 2;
 
             dataGridView1.Rows.Add();
 
             dataGridView1.Rows[dataGridView1.Rows.Count - 1].Cells[0].Value = "172.18.0.31";
-            dataGridView1.Rows[dataGridView1.Rows.Count - 1].Cells[1].Value = 4;
+            dataGridView1.Rows[dataGridView1.Rows.Count - 1].Cells[1].Value = 3;
 
             dataGridView1.Rows.Add();
 
             dataGridView1.Rows[dataGridView1.Rows.Count - 1].Cells[0].Value = "172.18.0.32";
+            dataGridView1.Rows[dataGridView1.Rows.Count - 1].Cells[1].Value = 4;
+
+            dataGridView1.Rows.Add();
+
+            dataGridView1.Rows[dataGridView1.Rows.Count - 1].Cells[0].Value = "172.18.0.28";
             dataGridView1.Rows[dataGridView1.Rows.Count - 1].Cells[1].Value = 5;
 
             dataGridView1.Rows.Add();
 
             dataGridView1.Rows[dataGridView1.Rows.Count - 1].Cells[0].Value = "172.18.0.195";
             dataGridView1.Rows[dataGridView1.Rows.Count - 1].Cells[1].Value = 6;
+
+            dataGridView1.Rows.Add();
+
+            dataGridView1.Rows[dataGridView1.Rows.Count - 1].Cells[0].Value = "172.18.0.19";
+            dataGridView1.Rows[dataGridView1.Rows.Count - 1].Cells[1].Value = 7;
 
             dataGridView1.Rows[0].DefaultCellStyle.BackColor = Color.IndianRed;
             dataGridView1.ClearSelection();
@@ -175,22 +185,19 @@ namespace Client
                     {
                         recieveUser.EhLider = true;
                         Invoke(new PintaLinhaDoLider(PintarLinhaDoLider), recieveUser);
-                        UltimoReplyRecebidoDoLider = DateTime.Now;
-                        break;
+                        UltimoReplyRecebidoDoLider = DateTime.Now;                        
                     }
-
-                    if (recieveUser.Peso < lider.Peso)
+                    else if (recieveUser.Peso < lider.Peso)
                     {
                         lider.EhLider = false;
                         recieveUser.EhLider = true;
                         Invoke(new PintaLinhaDoLider(PintarLinhaDoLider), recieveUser);
                         UltimoReplyRecebidoDoLider = DateTime.Now;
-                        break;
                     }
 
                     var diferencaTempo = DateTime.Now - UltimoReplyRecebidoDoLider;
 
-                    if (diferencaTempo.TotalSeconds > 1)
+                    if (diferencaTempo.TotalSeconds > 7)
                         lider.EhLider = false;
 
                 }
